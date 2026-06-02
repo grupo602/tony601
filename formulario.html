@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Cotización</title>
+</head>
+<body style="font-family: Arial, sans-serif; background:#001f3f; text-align:center; color:white; margin:0; padding:0;">
+
+<!-- MENU -->
+<div style="background:black; padding:15px;">
+    <a href="index.html" style="color:white; margin:15px; text-decoration:none;">Inicio</a>
+    <a href="quienes.html" style="color:white; margin:15px; text-decoration:none;">Quiénes somos</a>
+    <a href="equipo.html" style="color:white; margin:15px; text-decoration:none;">Equipo</a>
+    <a href="formulario.html" style="color:white; margin:15px; text-decoration:none;">Formulario</a>
+    <a href="normatividad.html" style="color:white; margin:15px; text-decoration:none;">Normatividad</a>
+</div>
+
+<h2>Solicitud de Cotización</h2>
+
+<!-- FORMULARIO EXTENSO -->
+<div style="background:white; color:black; padding:30px; margin:20px auto; max-width: 500px; border-radius: 10px; text-align: left; box-shadow: 0px 4px 10px rgba(0,0,0,0.3);">
+    
+    <label style="font-weight:bold;">Nombre Completo:</label><br>
+    <input type="text" id="nombre" style="width:100%; padding:8px; margin:8px 0 15px 0; box-sizing:border-box;" placeholder="Ej. Juan Pérez"><br>
+
+    <label style="font-weight:bold;">Teléfono de Contacto:</label><br>
+    <input type="tel" id="telefono" style="width:100%; padding:8px; margin:8px 0 15px 0; box-sizing:border-box;" placeholder="Ej. 5512345678"><br>
+
+    <label style="font-weight:bold;">Correo Electrónico:</label><br>
+    <input type="email" id="correo" style="width:100%; padding:8px; margin:8px 0 15px 0; box-sizing:border-box;" placeholder="ejemplo@correo.com"><br>
+
+    <label style="font-weight:bold;">Tipo de Servicio:</label><br>
+    <select id="servicio" style="width:100%; padding:8px; margin:8px 0 15px 0; box-sizing:border-box;">
+        <option value="Consultoría / Asesoría">Consultoría / Asesoría</option>
+        <option value="Mantenimiento / Instalación">Mantenimiento / Instalación</option>
+        <option value="Diseño / Desarrollo">Diseño / Desarrollo</option>
+        <option value="Otro (Especificar abajo)">Otro (Especificar abajo)</option>
+    </select><br>
+
+    <label style="font-weight:bold;">Presupuesto Estimado:</label><br>
+    <input type="text" id="presupuesto" style="width:100%; padding:8px; margin:8px 0 15px 0; box-sizing:border-box;" placeholder="Ej. $5,000 - $10,000"><br>
+
+    <label style="font-weight:bold;">Detalles del Proyecto o Servicio:</label><br>
+    <textarea id="detalles" style="width:100%; height:100px; padding:8px; margin:8px 0 20px 0; box-sizing:border-box;" placeholder="Describe detalladamente lo que necesitas..."></textarea><br>
+
+    <button onclick="enviarWhatsApp()" style="background:#ff8000; color:white; width:100%; padding:12px; border:none; font-size:16px; font-weight:bold; cursor:pointer; border-radius:5px;">
+        Enviar a WhatsApp
+    </button>
+</div>
+
+<!-- LÓGICA PARA ENVIAR A WHATSAPP -->
+<script>
+function enviarWhatsApp() {
+    // 1. Obtenemos los valores de los campos
+    var nombre = document.getElementById('nombre').value;
+    var telefono = document.getElementById('telefono').value;
+    var correo = document.getElementById('correo').value;
+    var servicio = document.getElementById('servicio').value;
+    var presupuesto = document.getElementById('presupuesto').value;
+    var detalles = document.getElementById('detalles').value;
+
+    // Número de WhatsApp (con el código de país de México +52)
+    var numeroWhatsApp = "525652060391"; 
+
+    // 2. Creamos el texto del mensaje con saltos de línea codificados (%0A)
+    var mensaje = "*Nueva Solicitud de Cotización*%0A%0A" +
+                  "*Nombre:* " + nombre + "%0A" +
+                  "*Teléfono:* " + telefono + "%0A" +
+                  "*Correo:* " + correo + "%0A" +
+                  "*Servicio:* " + servicio + "%0A" +
+                  "*Presupuesto:* " + presupuesto + "%0A" +
+                  "*Detalles:* " + detalles;
+
+    // 3. Abrimos la URL de WhatsApp
+    var url = "https://api.whatsapp.com/send?phone=" + numeroWhatsApp + "&text=" + mensaje;
+    window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
